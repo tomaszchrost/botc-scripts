@@ -1,0 +1,47 @@
+<style>
+    .table-striped-good>tbody>tr:nth-child(odd)>td {
+        background-color: #85c1e9;
+    }
+
+    .table-striped-good>tbody>tr:nth-child(even)>td {
+        background-color: #d6eaf8;
+    }
+
+    .table-striped-evil>tbody>tr:nth-child(odd)>td {
+        background-color: #f5b7b1;
+    }
+
+    .table-striped-evil>tbody>tr:nth-child(even)>td {
+        background-color: #fadbd8;
+    }
+
+    .table-striped-traveller>tbody>tr:nth-child(odd)>td {
+        background-color: #d6eaf8;
+    }
+
+    .table-striped-traveller>tbody>tr:nth-child(even)>td {
+        background-color: #fadbd8;
+    }
+
+    .table-striped-fabled>tbody>tr:nth-child(odd)>td {
+        background-color: #fff099;
+    }
+
+    .table-striped-fabled>tbody>tr:nth-child(even)>td {
+        background-color: #fff0cc;
+    }
+</style>
+
+<div class="col w-50 pl-0">
+    <h4 class="mt-2">{{ label }}</h4>
+    <table class="w-100 table-sm table-striped-{{ table_style }}">
+        <tbody>
+            {% for character, count in character_stats %}
+            <tr background-color="#">
+                <td class="w-75"><a href="/statistics/{{ character.character_id }}" class="text-dark">{{ character.character_name }}</a></td>
+                <td class="w-25 text-center">{{ count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

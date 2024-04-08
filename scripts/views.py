@@ -570,7 +570,7 @@ class ScriptDeleteView(LoginRequiredMixin, generic.edit.BaseDeleteView):
 
 class StatisticsView(generic.ListView, FilterView):
     model = models.ScriptVersion
-    template_name = "statistics.html"
+    template_name = "statistics/statistics-character.html"
     filterset_class = filters.StatisticsFilter
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
