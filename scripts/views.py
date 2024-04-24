@@ -570,7 +570,6 @@ class ScriptDeleteView(LoginRequiredMixin, generic.edit.BaseDeleteView):
 
 class StatisticsView(generic.ListView, FilterView):
     model = models.ScriptVersion
-    template_name = "statistics/statistics-character.html"
     filterset_class = filters.StatisticsFilter
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
@@ -594,6 +593,7 @@ class StatisticsView(generic.ListView, FilterView):
                 stats_character = models.Character.objects.get(
                     character_id=self.kwargs.get("character")
                 )
+                context["character"] = stats_character
                 queryset = queryset.filter(
                     content__contains=[{"id": stats_character.character_id}]
                 )
@@ -603,7 +603,7 @@ class StatisticsView(generic.ListView, FilterView):
             tags = models.ScriptTag.objects.get(pk=self.kwargs.get("tags"))
             if tags:
                 queryset = models.ScriptVersion.objects.filter(tags__in=[tags])
-
+            context["tags"] = tags
         if "tags" in self.request.GET:
             try:
                 tags = models.ScriptTag.objects.get(pk=self.request.GET.get("tags"))
@@ -696,6 +696,18 @@ class StatisticsView(generic.ListView, FilterView):
         context["num_count"] = num_count
 
         return context
+
+
+class StatisticsCharacterView(StatisticsView):
+    template_name = "statistics/statistics-character.html"
+
+
+class StatisticsScriptsView(StatisticsView):
+    template_name = "statistics/statistics-scripts.html"
+
+
+class StatisticsTagView(StatisticsView):
+    template_name = "statistics/statistics-tags.html"
 
 
 class UserDeleteView(LoginRequiredMixin, generic.TemplateView):
