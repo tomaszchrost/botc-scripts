@@ -1,0 +1,15 @@
+{% load botc_script_tags %}
+{% load bootstrap4 %}
+
+<h4 class="mt-2">{{ label }}</h4>
+<table class="w-100 table-sm table-striped-{{ table_style }}">
+    <tbody>
+        {% for character, count in character_stats %}
+        <tr class='row{{forloop.counter|stringformat:"02d"}}' background-color="#">
+            <td class="w-50"><a href="/statistics/{{ character.character_id }}" class="text-dark">{{ character.character_name }}</a></td>
+            <td class="w-25 text-center">{{ count }}</td>
+            <td class="w-25 text-center">{% get_character_percentage count total %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
