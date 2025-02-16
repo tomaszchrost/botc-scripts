@@ -646,6 +646,9 @@ class StatisticsView(generic.ListView, FilterView):
 
         return context
 
+class StatisticsCharacterView(StatisticsView):
+    template_name = "statistics/statistics_character.html"
+
 
 class UserDeleteView(LoginRequiredMixin, generic.TemplateView):
     """

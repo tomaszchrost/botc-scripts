@@ -97,7 +97,7 @@ urlpatterns = [
     path("script/search/results", views.AdvancedSearchResultsView.as_view()),
     path("script/upload", views.ScriptUploadView.as_view(), name="upload"),
     path("statistics", views.StatisticsView.as_view()),
-    path("statistics/<str:character>", views.StatisticsView.as_view()),
+    path("statistics/<str:character>", views.StatisticsCharacterView.as_view()),
     path("statistics/tags/<int:tags>", views.StatisticsView.as_view()),
     path("update", views.UpdateDatabaseView.as_view()),
     path("account/social/", include("allauth.socialaccount.urls")),
